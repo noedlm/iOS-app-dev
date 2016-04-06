@@ -49,4 +49,17 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         return cell
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print(filters[indexPath.row])
+        tableView.cellForRowAtIndexPath(indexPath)?.selectionStyle = UITableViewCellSelectionStyle.None
+        tableView.cellForRowAtIndexPath(indexPath)?.backgroundColor = UIColor.orangeColor()
+        tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.backgroundColor = UIColor.orangeColor()
+    }
+    
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.cellForRowAtIndexPath(indexPath)?.backgroundColor = UIColor.purpleColor()
+        tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.textColor = UIColor.whiteColor()
+        tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.backgroundColor = UIColor.purpleColor()
+    }
 }
