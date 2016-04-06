@@ -8,22 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		475F8C2D1C7D58830021156A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475F8C2C1C7D58830021156A /* AppDelegate.swift */; };
-		475F8C2F1C7D58830021156A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475F8C2E1C7D58830021156A /* ViewController.swift */; };
 		475F8C321C7D58830021156A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 475F8C301C7D58830021156A /* Main.storyboard */; };
 		475F8C341C7D58830021156A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 475F8C331C7D58830021156A /* Assets.xcassets */; };
 		475F8C371C7D58830021156A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 475F8C351C7D58830021156A /* LaunchScreen.storyboard */; };
 		475F8C3F1C7D595E0021156A /* RGBAImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475F8C3E1C7D595E0021156A /* RGBAImage.swift */; };
+		47CF66EA1CB4C064001A544C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CF66E91CB4C064001A544C /* ViewController.swift */; };
+		47CF66EC1CB4C0CE001A544C /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CF66EB1CB4C0CE001A544C /* TableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		475F8C291C7D58830021156A /* flytr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flytr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		475F8C2C1C7D58830021156A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		475F8C2E1C7D58830021156A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		475F8C311C7D58830021156A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		475F8C331C7D58830021156A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		475F8C361C7D58830021156A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		475F8C381C7D58830021156A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		475F8C3E1C7D595E0021156A /* RGBAImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RGBAImage.swift; sourceTree = "<group>"; };
+		47CF66E91CB4C064001A544C /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		47CF66EB1CB4C0CE001A544C /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +59,8 @@
 			isa = PBXGroup;
 			children = (
 				475F8C2C1C7D58830021156A /* AppDelegate.swift */,
-				475F8C2E1C7D58830021156A /* ViewController.swift */,
+				47CF66E91CB4C064001A544C /* ViewController.swift */,
+				47CF66EB1CB4C0CE001A544C /* TableViewController.swift */,
 				475F8C3E1C7D595E0021156A /* RGBAImage.swift */,
 				475F8C301C7D58830021156A /* Main.storyboard */,
 				475F8C331C7D58830021156A /* Assets.xcassets */,
@@ -139,9 +142,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				475F8C2F1C7D58830021156A /* ViewController.swift in Sources */,
+				47CF66EA1CB4C064001A544C /* ViewController.swift in Sources */,
 				475F8C3F1C7D595E0021156A /* RGBAImage.swift in Sources */,
 				475F8C2D1C7D58830021156A /* AppDelegate.swift in Sources */,
+				47CF66EC1CB4C0CE001A544C /* TableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +295,7 @@
 				475F8C3D1C7D58830021156A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
