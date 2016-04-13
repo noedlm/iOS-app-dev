@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4ws-fR-O9g">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -26,8 +26,8 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="JX0-CI-L02">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2RT-UH-05e">
-                                                <rect key="frame" x="0.0" y="0.0" width="120" height="44"/>
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2RT-UH-05e">
+                                                <rect key="frame" x="0.0" y="0.0" width="150" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="DZ9-xk-uKY"/>
                                                     <constraint firstAttribute="height" constant="44" id="PiV-4z-0Op"/>
@@ -38,9 +38,12 @@
                                                         <exclude reference="PiV-4z-0Op"/>
                                                     </mask>
                                                 </variation>
+                                                <connections>
+                                                    <action selector="onNewPic:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BVu-K1-7kU"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XqN-wv-Kgm">
-                                                <rect key="frame" x="120" y="0.0" width="120" height="44"/>
+                                                <rect key="frame" x="150" y="0.0" width="150" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="hnA-0q-Ldq"/>
                                                     <constraint firstAttribute="height" constant="44" id="id4-5j-cjr"/>
@@ -56,7 +59,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5xh-rb-bDO">
-                                                <rect key="frame" x="240" y="0.0" width="120" height="44"/>
+                                                <rect key="frame" x="300" y="0.0" width="150" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="v74-tH-sIj"/>
                                                     <constraint firstAttribute="height" constant="44" id="zmA-iO-Myp"/>
@@ -68,22 +71,8 @@
                                                     </mask>
                                                 </variation>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q0U-gS-vPC">
-                                                <rect key="frame" x="360" y="0.0" width="120" height="44"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="44" id="nMf-Gt-DV0"/>
-                                                    <constraint firstAttribute="height" constant="44" id="wvc-xm-FoT"/>
-                                                </constraints>
-                                                <state key="normal" title="Abort!!"/>
-                                                <state key="selected" title="Greenish"/>
-                                                <variation key="default">
-                                                    <mask key="constraints">
-                                                        <exclude reference="nMf-Gt-DV0"/>
-                                                    </mask>
-                                                </variation>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PdU-NI-hkN">
-                                                <rect key="frame" x="480" y="0.0" width="120" height="44"/>
+                                                <rect key="frame" x="450" y="0.0" width="150" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="9sk-Pb-po0"/>
                                                     <constraint firstAttribute="height" constant="44" id="t3R-u2-4hI"/>
