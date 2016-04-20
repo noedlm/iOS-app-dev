@@ -160,7 +160,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 rgbImage.pixels[nIndex] = pixel
             }
         }
-        filteredImage = rgbImage.toUIImage()!
+        if saveImage(rgbImage.toUIImage()!, path: filteredImagePath) {
+            //filteredImage = loadImageFromPath(filteredImagePath)
+            print("saved filtered image!!! yay!!!")
+        }
     }
     
     private func moreGreen() {
@@ -217,6 +220,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     private func saveImage(image: UIImage, path: String) -> Bool {
         let jpgImage = UIImageJPEGRepresentation(image, 1.0)
+        print("saving image to path: \(path)")
         return jpgImage!.writeToFile(path, atomically: true)
     }
     
