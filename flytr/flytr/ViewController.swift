@@ -8,10 +8,24 @@
 
 import UIKit
 
+
+func getDocumentsURL() -> NSURL {
+    let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
+    return documentsURL
+}
+
+func fileInDocumentsDirectory(filename: String) -> String {
+    let fileURL = getDocumentsURL().URLByAppendingPathComponent(filename)
+    return fileURL.path!
+}
+
+
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var filteredImage: UIImage?
     var image: UIImage?
+    var originalImagePath: String!
+    var filteredImagePath: String!
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var filterButton: UIButton!
     @IBOutlet var filterSubMenu: UIView!
@@ -21,8 +35,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet var greenish: UIButton!
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        originalImagePath = fileInDocumentsDirectory("originalImage.jpg")
+        filteredImagePath = fileInDocumentsDirectory("filteredImage.jpg")
+        
         // Do any additional setup after loading the view, typically from a nib.
         imageView.image = UIImage(named: "ImageProcessor.jpg")!
         image = UIImage(named: "ImageProcessor.jpg")!
@@ -33,6 +52,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func onShare(sender: AnyObject) {
+        let activityController = UIActivityViewController(activityItems: [imageView.image!], applicationActivities: nil)
+        presentViewController(activityController, animated: true, completion: nil)
     }
     
     @IBAction func onNewPic(sender: AnyObject) {
@@ -70,8 +94,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         dismissViewControllerAnimated(true, completion: nil)
-        imageView.image = info[UIImagePickerControllerOriginalImage] as?UIImage
-        image = imageView.image
+        
+        
+        if let img = info[UIImagePickerControllerOriginalImage] as?UIImage {
+            saveImage(img, path: originalImagePath)
+            imageView.image = loadImageFromPath(originalImagePath)
+        } else {
+            print("something went wrong!")
+        }
+        image = loadImageFromPath(originalImagePath)
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
@@ -103,11 +134,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBAction func onDog(sender: AnyObject) {
         if dog.selected {
-            imageView.image = image
+            imageView.image = loadImageFromPath(originalImagePath)
             dog.selected = false
         } else {
             greyScale()
-            imageView.image = filteredImage
+            imageView.image = loadImageFromPath(filteredImagePath)
             dog.selected = true
         }
     }
@@ -149,7 +180,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 rgbImage.pixels[index] = pixel
             }
         }
-        filteredImage = rgbImage.toUIImage()!
+        if saveImage(rgbImage.toUIImage()!, path: filteredImagePath) {
+            //filteredImage = loadImageFromPath(filteredImagePath)
+            print("saved filtered image!!! yay!!!")
+        }
     }
     
     private func showFilterSubMenu() {
@@ -179,6 +213,22 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                     self.filterSubMenu.removeFromSuperview()
             }
         }
+    }
+    
+    private func saveImage(image: UIImage, path: String) -> Bool {
+        let jpgImage = UIImageJPEGRepresentation(image, 1.0)
+        return jpgImage!.writeToFile(path, atomically: true)
+    }
+    
+    private func loadImageFromPath(path: String) -> UIImage? {
+        let image = UIImage(contentsOfFile: path)
+        
+        if image == nil {
+            print("missing path at: \(path)")
+        }
+        
+        print("loading image from path: \(path)")
+        return image
     }
 }
 
