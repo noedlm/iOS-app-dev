@@ -14,6 +14,7 @@
 		475F8C3F1C7D595E0021156A /* RGBAImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475F8C3E1C7D595E0021156A /* RGBAImage.swift */; };
 		47CF66EA1CB4C064001A544C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CF66E91CB4C064001A544C /* ViewController.swift */; };
 		47CF66EC1CB4C0CE001A544C /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CF66EB1CB4C0CE001A544C /* TableViewController.swift */; };
+		47DDED331CD9908D00D894BD /* filterProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DDED321CD9908D00D894BD /* filterProcessor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		475F8C3E1C7D595E0021156A /* RGBAImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RGBAImage.swift; sourceTree = "<group>"; };
 		47CF66E91CB4C064001A544C /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		47CF66EB1CB4C0CE001A544C /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		47DDED321CD9908D00D894BD /* filterProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = filterProcessor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				47CF66E91CB4C064001A544C /* ViewController.swift */,
 				47CF66EB1CB4C0CE001A544C /* TableViewController.swift */,
 				475F8C3E1C7D595E0021156A /* RGBAImage.swift */,
+				47DDED321CD9908D00D894BD /* filterProcessor.swift */,
 				475F8C301C7D58830021156A /* Main.storyboard */,
 				475F8C331C7D58830021156A /* Assets.xcassets */,
 				475F8C351C7D58830021156A /* LaunchScreen.storyboard */,
@@ -145,6 +148,7 @@
 				47CF66EA1CB4C064001A544C /* ViewController.swift in Sources */,
 				475F8C3F1C7D595E0021156A /* RGBAImage.swift in Sources */,
 				475F8C2D1C7D58830021156A /* AppDelegate.swift in Sources */,
+				47DDED331CD9908D00D894BD /* filterProcessor.swift in Sources */,
 				47CF66EC1CB4C0CE001A544C /* TableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

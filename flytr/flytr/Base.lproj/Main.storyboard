@@ -64,7 +64,7 @@
                                                     <constraint firstAttribute="height" constant="44" id="v74-tH-sIj"/>
                                                     <constraint firstAttribute="height" constant="44" id="zmA-iO-Myp"/>
                                                 </constraints>
-                                                <state key="normal" title="Launch Nukes"/>
+                                                <state key="normal" title="Compare"/>
                                                 <variation key="default">
                                                     <mask key="constraints">
                                                         <exclude reference="v74-tH-sIj"/>
@@ -118,6 +118,8 @@
                         <outlet property="filterSubMenu" destination="NAD-K1-lUF" id="OVw-3T-nOK"/>
                         <outlet property="greenish" destination="WBn-yR-EEW" id="vA7-qt-sbQ"/>
                         <outlet property="imageView" destination="8tg-Jd-SBa" id="jTo-A0-RKR"/>
+                        <outlet property="lumos" destination="vFb-a5-Rcn" id="wBt-ip-4le"/>
+                        <outlet property="vintage" destination="wqq-2n-VG6" id="qlD-0Y-KhC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -138,10 +140,16 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wqq-2n-VG6">
                                     <rect key="frame" x="85" y="0.0" width="85" height="128"/>
                                     <state key="normal" title="Vintage"/>
+                                    <connections>
+                                        <action selector="onVintage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="a78-mU-cds"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vFb-a5-Rcn">
                                     <rect key="frame" x="170" y="0.0" width="85" height="128"/>
                                     <state key="normal" title="Lumos"/>
+                                    <connections>
+                                        <action selector="onLumos:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6An-it-gi6"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mKb-v1-myl">
                                     <rect key="frame" x="255" y="0.0" width="85" height="128"/>

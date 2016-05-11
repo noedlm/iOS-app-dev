@@ -23,9 +23,9 @@ func fileInDocumentsDirectory(filename: String) -> String {
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var filteredImage: UIImage?
-    var image: UIImage?
-    var originalImagePath: String!
-    var filteredImagePath: String!
+    var image: UIImage!
+//    var originalImagePath: String!
+//    var filteredImagePath: String!
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var filterButton: UIButton!
     @IBOutlet var filterSubMenu: UIView!
@@ -33,14 +33,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBOutlet var dog: UIButton!
     @IBOutlet var greenish: UIButton!
+    @IBOutlet var vintage: UIButton!
+    @IBOutlet var lumos: UIButton!
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        originalImagePath = fileInDocumentsDirectory("originalImage.jpg")
-        filteredImagePath = fileInDocumentsDirectory("filteredImage.jpg")
+//        originalImagePath = fileInDocumentsDirectory("originalImage.jpg")
+//        filteredImagePath = fileInDocumentsDirectory("filteredImage.jpg")
         
         // Do any additional setup after loading the view, typically from a nib.
         imageView.image = UIImage(named: "ImageProcessor.jpg")!
@@ -97,12 +99,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         
         if let img = info[UIImagePickerControllerOriginalImage] as?UIImage {
-            saveImage(img, path: originalImagePath)
-            imageView.image = loadImageFromPath(originalImagePath)
+            image = img;
+            imageView.image = image
         } else {
             print("something went wrong!")
         }
-        image = loadImageFromPath(originalImagePath)
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
@@ -128,65 +129,93 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             moreGreen()
             imageView.image = filteredImage
             greenish.selected = true
+            
+            dog.selected = false
+            vintage.selected = false
+            lumos.selected = false
+        }
+    }
+    
+    
+    @IBAction func onVintage(sender: AnyObject) {
+        if vintage.selected {
+            imageView.image = image
+            vintage.selected = false
+        } else {
+            vintageFilter()
+            imageView.image = filteredImage
+            vintage.selected = true
+            
+            dog.selected = false
+            greenish.selected = false
+            lumos.selected = false
+            
+        }
+    }
+    
+    @IBAction func onLumos(sender: AnyObject) {
+        if lumos.selected {
+            imageView.image = image
+            lumos.selected = false
+        } else {
+            lumosFilter()
+            imageView.image = filteredImage
+            lumos.selected = true
+            
+            greenish.selected = false
+            vintage.selected = false
+            dog.selected = false
         }
     }
     
     
     @IBAction func onDog(sender: AnyObject) {
         if dog.selected {
-            imageView.image = loadImageFromPath(originalImagePath)
+            imageView.image = image
             dog.selected = false
         } else {
             greyScale()
-            imageView.image = loadImageFromPath(filteredImagePath)
+            imageView.image = filteredImage
             dog.selected = true
+            
+            greenish.selected = false
+            vintage.selected = false
+            lumos.selected = false
         }
     }
 
 //private functions
     private func greyScale() {
-        let rgbImage = RGBAImage.init(image: image!)!
+        var rgbImage = RGBAImage.init(image: image!)!
+        let filter = filterProcessor(image: rgbImage)!
         
-        for y in 0..<rgbImage.height {
-            for x in 0..<rgbImage.width {
-                let nIndex = y * rgbImage.width + x
-                var pixel = rgbImage.pixels[nIndex]
-                let maxInt = max(pixel.red, pixel.green, pixel.blue)
-                let minInt = min(pixel.red, pixel.green, pixel.blue)
-                let light = (Int(maxInt) + Int(minInt)) / 2
-                pixel.red = UInt8(light)
-                pixel.green = UInt8(light)
-                pixel.blue = UInt8(light)
-                rgbImage.pixels[nIndex] = pixel
-            }
-        }
-        if saveImage(rgbImage.toUIImage()!, path: filteredImagePath) {
-            //filteredImage = loadImageFromPath(filteredImagePath)
-            print("saved filtered image!!! yay!!!")
-        }
+        rgbImage = filter.greyScale()
+        filteredImage = rgbImage.toUIImage()
+    }
+    
+    private func vintageFilter() {
+        var rgbImage = RGBAImage.init(image: image!)!
+        let filter = filterProcessor(image: rgbImage)!
+        
+        rgbImage = filter.vintagePrinter()
+        filteredImage = rgbImage.toUIImage()
+    }
+    
+    private func lumosFilter() {
+        var rgbImage = RGBAImage.init(image: image!)!
+        let filter = filterProcessor(image: rgbImage)!
+        
+        rgbImage = filter.lumos()
+        filteredImage = rgbImage.toUIImage()
     }
     
     private func moreGreen() {
-        let rgbImage = RGBAImage.init(image: image!)!
+        var rgbImage = RGBAImage.init(image: image!)!
+        let filter = filterProcessor.init(image: rgbImage)!
         
-        for y in 0..<rgbImage.height {
-            for x in 0..<rgbImage.width {
-                let index = y * rgbImage.width + x
-                var pixel = rgbImage.pixels[index]
-                
-                if pixel.red > 120 {
-                    pixel.red = UInt8(min(255, max(0, Int(pixel.red) - 20)))
-                }
-                if pixel.green < 45 {
-                    pixel.green = UInt8(max(0, min(255, Int(pixel.green) + 20)))
-                }
-                rgbImage.pixels[index] = pixel
-            }
-        }
-        if saveImage(rgbImage.toUIImage()!, path: filteredImagePath) {
-            //filteredImage = loadImageFromPath(filteredImagePath)
-            print("saved filtered image!!! yay!!!")
-        }
+        rgbImage = filter.moreGreen()
+        print("finished applying moreGreen()")
+        filteredImage = rgbImage.toUIImage()
     }
     
     private func showFilterSubMenu() {
@@ -218,21 +247,21 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
-    private func saveImage(image: UIImage, path: String) -> Bool {
-        let jpgImage = UIImageJPEGRepresentation(image, 1.0)
-        print("saving image to path: \(path)")
-        return jpgImage!.writeToFile(path, atomically: true)
-    }
-    
-    private func loadImageFromPath(path: String) -> UIImage? {
-        let image = UIImage(contentsOfFile: path)
-        
-        if image == nil {
-            print("missing path at: \(path)")
-        }
-        
-        print("loading image from path: \(path)")
-        return image
-    }
+//    private func saveImage(image: UIImage, path: String) -> Bool {
+//        let jpgImage = UIImageJPEGRepresentation(image, 1.0)
+//        print("saving image to path: \(path)")
+//        return jpgImage!.writeToFile(path, atomically: true)
+//    }
+//    
+//    private func loadImageFromPath(path: String) -> UIImage? {
+//        let image = UIImage(contentsOfFile: path)
+//        
+//        if image == nil {
+//            print("missing path at: \(path)")
+//        }
+//        
+//        print("loading image from path: \(path)")
+//        return image
+//    }
 }
 
