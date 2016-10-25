@@ -30,6 +30,8 @@ xcuserdata/
 timeline.xctimeline
 playground.xcworkspace
 *.xcuserstate
+*.DS_Store
+*.xcuserstate
 
 # Swift Package Manager
 #
@@ -62,9 +64,3 @@ Carthage/Build
 fastlane/report.xml
 fastlane/screenshots
 
-
-.DS_Store
-
-playgrounds/coursera - intro to swift/.DS_Store
-
-*.xcuserstate
